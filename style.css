@@ -123,6 +123,7 @@ a:active {
         display: grid;
         place-items: center;
         justify-content: center;
+        overflow: hidden;
     }
     .container {
         width: 280px;
