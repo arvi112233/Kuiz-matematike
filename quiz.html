@@ -3,146 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kuiz mbi këndet në matematikë">
     <title>Kuiz - Këndet</title>
+    <link rel="icon" href="data:,">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
         }
 
-        /* Loading Screen */
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .loader {
-            width: 100px;
-            height: 100px;
-            border: 5px solid #403dff;
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Glowing Background */
-        .glow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .glow {
-            position: absolute;
-            filter: blur(80px);
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .glow1 {
-            top: -150px;
-            left: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #403dff 0%, transparent 70%);
-            animation: floatAnimation1 15s infinite;
-        }
-
-        .glow2 {
-            bottom: -150px;
-            right: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #4f4dff 0%, transparent 70%);
-            animation: floatAnimation2 20s infinite;
-        }
-
-        .glow3 {
-            top: 40%;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #5f5dff 0%, transparent 70%);
-            animation: floatAnimation3 17s infinite;
-        }
-
-        .glow4 {
-            bottom: 30%;
-            left: -100px;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, #6f6dff 0%, transparent 70%);
-            animation: floatAnimation4 22s infinite;
-        }
-
-        @keyframes floatAnimation1 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, 100px); }
-        }
-
-        @keyframes floatAnimation2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-100px, -100px); }
-        }
-
-        @keyframes floatAnimation3 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-100px, 50px); }
-        }
-
-        @keyframes floatAnimation4 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, -50px); }
-        }
-
-        /* Quiz Container */
         .quiz-container {
-            position: relative;
-            z-index: 1;
-            background-color: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid #403dff;
-            border-radius: 15px;
-            padding: 25px;
+            background-color: #2d2d2d;
+            border-radius: 10px;
+            padding: 20px;
             width: 500px;
             height: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-            box-shadow: 0 0 20px rgba(64, 61, 255, 0.2);
         }
 
         .question {
@@ -152,35 +36,30 @@
         .question h2 {
             margin: 0 0 10px 0;
             font-size: 1.2em;
-            color: #403dff;
         }
 
         .question p {
             margin: 0;
-            font-size: 1.1em;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             flex: 1;
         }
 
         .option {
-            padding: 10px;
-            border: 1px solid rgba(64, 61, 255, 0.3);
-            border-radius: 8px;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            background-color: rgba(30, 30, 30, 0.6);
         }
 
         .option:hover {
-            background-color: rgba(64, 61, 255, 0.1);
-            transform: translateX(5px);
-            border-color: #403dff;
+            background-color: #3d3d3d;
         }
 
         .option input[type="radio"] {
@@ -203,29 +82,84 @@
             transform: translateY(-50%);
             width: 16px;
             height: 16px;
-            border: 2px solid #403dff;
+            border: 2px solid #666;
             border-radius: 50%;
             background-color: transparent;
             transition: all 0.3s ease;
         }
 
         .option input[type="radio"]:checked + label:before {
-            background-color: #403dff;
-            box-shadow: 0 0 10px #403dff;
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .button-container {
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button.correct {
+            background-color: #4CAF50;
+        }
+
+        button.incorrect {
+            background-color: #f44336;
+        }
+
+        /* Results styling */
+        .results {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .results h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        .grade {
+            font-size: 36px;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        .retry-btn {
+            background-color: #2196F3;
+            margin-top: 20px;
+        }
+
+        .pass {
+            color: #4CAF50;
+        }
+
+        .fail {
+            color: #f44336;
         }
     </style>
 </head>
 <body>
-    <div class="loader-container">
-        <div class="loader"></div>
-    </div>
-    <div class="glow-container">
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
-        <div class="glow glow3"></div>
-        <div class="glow glow4"></div>
-    </div>
-    <div class="quiz-container">
+    <div class="quiz-container" id="quizContainer">
         <div class="question" id="question">
             <h2>Pyetja <span id="questionNumber">1</span>/15:</h2>
             <p id="questionText"></p>
@@ -318,8 +252,14 @@
 
         let currentQuestion = 0;
         let isAnswered = false;
+        let correctAnswers = 0;
 
         function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
             isAnswered = false;
             const question = questions[currentQuestion];
             document.getElementById('questionNumber').textContent = currentQuestion + 1;
@@ -340,11 +280,6 @@
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.textContent = 'Përgjigju';
             submitBtn.className = '';
-            
-            document.querySelectorAll('.option').forEach(option => {
-                option.style.backgroundColor = '';
-                option.style.color = '';
-            });
         }
 
         function selectOption(index) {
@@ -354,12 +289,45 @@
             }
         }
 
+        function calculateGrade() {
+            const percentage = (correctAnswers / questions.length) * 100;
+            if (percentage >= 95) return 10;
+            if (percentage >= 85) return 9;
+            if (percentage >= 75) return 8;
+            if (percentage >= 65) return 7;
+            if (percentage >= 55) return 6;
+            if (percentage >= 45) return 5;
+            return 4;
+        }
+
+        function showResults() {
+            const quizContainer = document.getElementById('quizContainer');
+            const percentage = ((correctAnswers / questions.length) * 100).toFixed(1);
+            const grade = calculateGrade();
+
+            quizContainer.innerHTML = `
+                <div class="results">
+                    <h2>Rezultatet e Kuizit</h2>
+                    <div class="score">
+                        Përgjigje të sakta: ${correctAnswers} nga ${questions.length}
+                        <br>
+                        Përqindja: ${percentage}%
+                    </div>
+                    <div class="grade">
+                        Nota: ${grade}
+                    </div>
+                    <div class="${grade > 4 ? 'pass' : 'fail'}">
+                        ${grade > 4 ? 'Ju kaluat!' : 'Ju nuk kaluat. Provoni përsëri!'}
+                    </div>
+                    <button class="retry-btn" onclick="location.reload()">Provo Përsëri</button>
+                </div>
+            `;
+        }
+
         function checkAnswer() {
             if (isAnswered) {
-                if (currentQuestion < questions.length - 1) {
-                    currentQuestion++;
-                    loadQuestion();
-                }
+                currentQuestion++;
+                loadQuestion();
                 return;
             }
 
@@ -374,7 +342,10 @@
             const selectedIndex = parseInt(selected.value);
             const isCorrect = selectedIndex === correct;
 
-            // Mark correct and incorrect options
+            if (isCorrect) {
+                correctAnswers++;
+            }
+
             document.querySelectorAll('.option').forEach((option, index) => {
                 if (index === correct) {
                     option.style.backgroundColor = '#4CAF50';
@@ -389,6 +360,11 @@
             if (isCorrect) {
                 submitBtn.textContent = 'Saktë ✓ - Vazhdo';
                 submitBtn.className = 'correct';
+                // Only auto-progress if answer is correct
+                setTimeout(() => {
+                    currentQuestion++;
+                    loadQuestion();
+                }, 2000);
             } else {
                 submitBtn.textContent = 'Gabim ✗ - Vazhdo';
                 submitBtn.className = 'incorrect';
