@@ -12,42 +12,61 @@ body {
     color: white;
     padding: 20px;
     height: 340px;
-    width: 300px;
+    width: 350px;
     border-radius: 20px;
     box-shadow: 0 0 5px #424eff57;
-    animation: movement 1s ease-out;
+    animation: movement 2.4s 1;
     margin: 0 auto;
     position: relative;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px solid #403dff;
 }
 
+.container:hover {
+    transform: translateY(-10px) scale(1.04);
+    background-color: rgba(26, 1, 255, 0.13);
+}
+
 @keyframes movement {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
+    0% {
+        transform: translateY(0px);
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+    50% {
+        transform: translateY(50px);
+        box-shadow: 0 0 10px #ffffff,
+                    0 0 20px white,
+                    0 0 40px white;
+        box-shadow: 0 0 100px #403dff;
+    }
+    100% {
+        transform: translateY(0px);
     }
 }
 
 h1 {
-    animation: movement1 0.8s ease-out;
-    text-shadow: 0 0 8px #ffffff;
+    animation: movement1 2.4s 2;
+    text-shadow: 0 0 10px #ffffff,
+                0 0 20px white,
+                0 0 40px white;
+    text-shadow: 0 0 70px white,
+                0 0 100px white;
 }
 
 @keyframes movement1 {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
+    0% {
+        transform: translateY(0px);
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+    50% {
+        transform: translateY(20px);
+        text-shadow: 0 0 10px #ffffff,
+                    0 0 30px white,
+                    0 0 70px white;
+    }
+    100% {
+        transform: translateY(0px);
     }
 }
 
@@ -73,7 +92,7 @@ a {
     margin-top: 20px;
     width: 50px;
     box-shadow: 0 0 10px #403dff;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 a:hover {
@@ -94,4 +113,41 @@ a:active {
     transform: translateY(-10px);
     box-shadow: 0 0 60px #403dff,
                 0 0 100px #403dff;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        place-items: center;
+        justify-content: center;
+    }
+    .container {
+        width: 280px;
+        height: 320px;
+        margin: 0 auto;
+        transform: scale(0.85);
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 1.3em;
+    }
+
+    p {
+        width: 230px;
+        font-size: 0.95em;
+    }
+
+    a {
+        transform: scale(0.95) translateY(-24px);
+    }
+    a:hover {
+        transform: translateY(-30px);
+    }
 }
